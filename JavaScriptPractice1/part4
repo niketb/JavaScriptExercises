@@ -1,0 +1,30 @@
+function correspondingElements(as) {
+   var mapArr = [];
+   
+   mapArr = as.map(function(a, i) {
+      return a.map(function(e, j) {
+         return [e, j, i];
+      })
+   });
+
+   console.log(mapArr);
+   
+   var redArr1 = [];
+   redArr1 = mapArr.reduce(function(p, c, arr) {
+      p[c[1]] = [c[0], c[2]];
+   }, []);
+
+   console.log(redArr1);
+   
+   var redArr2 = [];
+   redArr2 = redArr1.reduce(function(p, c, arr) {
+      p[c[2]].push(c[0]);
+   }, []);
+   
+   console.log(redArr2);
+
+   return redArr2;
+}
+
+correspondingElements([[1, 4, -9, 16], ["a", "b", "c", "d"]]);
+correspondingElements([[1, 4, -9, 16], ["a", "b", "c", "d"], [1, 2, 0, 4]]);
